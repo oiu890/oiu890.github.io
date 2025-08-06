@@ -48,3 +48,11 @@ body {
     font-size: 20px;
 }
 
+.p3 {
+    font-weight: bold;
+}
+
+.p4 {
+    font-style: italic;
+    font-size: 40px;
+}

@@ -7,4 +7,4 @@ Features that I have:
 - 404 page
 - link to another website (github)
 - html list (ul tag)
-
+- 3 paragraphs
