@@ -6,7 +6,7 @@
 p {
     font-size:60px;
     text-align: center;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Relief';
 }
 .p1 {
     font-size:40px;
@@ -55,4 +55,61 @@ body {
 .p4 {
     font-style: italic;
     font-size: 40px;
+}
+
+/* .pop {
+    display:block;
+    margin: 20px auto;
+} */
+.music {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+#proj {
+    text-align:center;
+    font-size:15px;
+
+}
+.write-hover {
+    color: blue;
+}
+
+.write-hover:hover {
+    color: red;
+    background-color: yellow;
+}
+
+.gif {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.gif1 {
+    top: 50px;
+    left: 100px;
+}
+.gif2 {
+    top: 200px;
+    right: 50px;
+}
+.gif5 {
+    bottom: 100px;
+    left: 200px;
+}
+.gif4 {
+    bottom: 150px;
+    right: 200px;
+}
+.gif3 {
+    bottom:30%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    /* height:200px; */
+}
+.active {
+    opacity: 1;
 }

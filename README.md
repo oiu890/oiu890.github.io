@@ -7,4 +7,14 @@ Features that I have:
 - 404 page
 - link to another website (github)
 - html list (ul tag)
-- 3 paragraphs
+- 3 paragraphs with different css
+- special link (email)
+- projects.html has audio
+- special text formatting (strong tag, italic tag, underline tag)
+- Custom imported Font from Google Fonts (Comic Relief)
+- html Button
+- CSS: hover
+- html iframe 
+- gifs
+
+

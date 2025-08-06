@@ -4,14 +4,33 @@
         <link rel="stylesheet" href="style.css">
         <title>Projects</title>
     </head>
-    <iframe src="multi.html" width="100%" height="1000" class = "writeup"></iframe>
+    <button onclick="window.location.href='index.html'" class ="butt">Home</button>
     <p class = "p3">
         Hello this is still a work in progress :(
     </p>
+    <p id = "proj"><i>I have no projects</i></p>
     <p class = "p4">In the mean time listen to some music</p>
     <center><img src="images/emoji_sad.png" alt="Error"></center>
-    <audio controls>
-        <source src="audio-file.mp3" type="audio/mpeg">
-        MUSIC
-    </audio>
+    <div class = "music">
+        <center><audio autoplay loop>
+            <source src="audio/KPop_Demon_Hunters_-_Soda_Pop_(English,_soundtrack_version).mp3" type="audio/mpeg" class = "pop">
+            PLAY MUSIC
+        </audio>
+        </center>
+    </div>
+    <img src="https://media1.tenor.com/m/m9DXFgPEczwAAAAd/kpop-demon-hunters-2025.gif" class = "gif gif1 active" alt="Middle dance">
+    <img src = "https://media1.tenor.com/m/6gPMDLc9HXkAAAAC/jinu-demon-hunters.gif" class = "gif gif2" alt = "hip thrust">
+    <img src = "https://media1.tenor.com/m/b7wDtW_sQ6IAAAAd/saja-boys-kpop-demon-hunters.gif" class = "gif gif3" alt = "soda">
+    <img src = "https://media1.tenor.com/m/ufaymyL-7sQAAAAd/kpop-demon-hunters-zoey-kpop-demon-hunters.gif" class = "gif gif4" alt = "zoe">
+    <img src = "https://media1.tenor.com/m/Xz5aAg_oyLUAAAAd/you%27re-all-i-can-think-of-saja-boys.gif" class = "gif gif5" alt = "youre all">
+    <script>
+        const gifs = document.querySelectorAll('.gif');
+        let current = 0;
+        function show_next(){
+            gifs[current].classList.remove('active');
+            current = (current+1)%gifs.length;
+            gifs[current].classList.add('active');
+        }
+        setInterval(show_next,3000);
+    </script>
 </html>
