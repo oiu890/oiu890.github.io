@@ -1,0 +1,50 @@
+#error {
+    font-size:50px;
+    text-align: center;
+}
+
+p {
+    font-size:60px;
+    text-align: center;
+    font-family: 'Comic Sans MS';
+}
+.p1 {
+    font-size:40px;
+}
+
+.footer {
+    font-size:20px;
+    text-align: center;
+}
+
+#interest {
+    font-size:30px;
+    text-align: center;
+    /* padding-left: 20px; */
+    padding: 0;
+    /* margin: 50; */
+}
+ul {
+    padding-left: 20px;
+    /* width: fit-content; */
+}
+
+.p2 {
+    font-size:30px;
+    font-family: 'Comic Sans MS';
+
+}
+
+.back {
+    font-size:20px;
+}
+
+body {
+    background-color: lightblue;
+}
+
+.butt {
+    /* padding: 15px 40px; */
+    font-size: 20px;
+}
+

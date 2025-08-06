@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>multiplier</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="challenge-details">Challenge Details</h1>
+<p>Challenge name: Multiplier<br />
+Competition: Sieberr 6.0<br />
+Category: Reversing<br />
+Points: 1000<br />
+Solves: 3<br />
+Author: fastfoodsworker</p>
+<h1 id="challenge-description">Challenge Description</h1>
+<p>an initial increase in spending prompts producers to produce at a
+greater output, generating more factor income for households which
+provide factors of production to these firms. these households then
+spend part of the additional income on consumer goods, while the rest of
+the additional income is saved, taxed or spent on imported goods. this
+generates a second round of increase in spending, which produces a
+second round of increase in factor income for households. this process
+continues until the increase in spending becomes negligible, hence
+leading to a greater increase in national income from an initial
+increase in spending.</p>
+<h1 id="files">Files</h1>
+<figure>
+<img src="./multiplier" alt="multiplier" />
+<figcaption aria-hidden="true">multiplier</figcaption>
+</figure>
+<h1 id="solve">Solve</h1>
+<p>We are given an executable binary file. Of course, the first step is
+to run it and see what happens. <img src="/images/start.png"
+alt="output" /> Its some kind of multiplying numbers game so I just
+assumed that you have to win a certain amount of times to get a flag.
+However, when you first run the file, it takes very long before showing
+you the output. It could be that theres something else going on.</p>
+<p>Lets take a closer look:</p>
+<p><img src="/images/children.png" alt="children" /><br />
+😯 The binary spawns a lot of children, but these children get deleted
+after the program finishes running.</p>
+<h1 id="ghidra">Ghidra</h1>
+<p>Of course, the next step would be to dump the binary into a
+decompiler of your choice and do some magic</p>
+uhhhhhhhhhhhhh
+<details>
+<summary>
+Decompiled
+</summary>
+<p>/* WARNING: Instruction at (ram,0x010e3200) overlaps instruction at
+(ram,0x010e31ff) <em>/ /</em> WARNING: Removing unreachable block
+(ram,0x010e318b) <em>/ /</em> WARNING: Removing unreachable block
+(ram,0x010e3193) <em>/ /</em> WARNING: Removing unreachable block
+(ram,0x010e318f) <em>/ /</em> WARNING: Removing unreachable block
+(ram,0x010e31e9) <em>/ /</em> WARNING: Heritage AFTER dead removal.
+Example location: s0xffffffffffffffc0 : 0x010e3289 <em>/ /</em> WARNING:
+Restarted to delay deadcode elimination for space: stack */</p>
+<p>void processEntry entry(undefined8 param_1)</p>
+<p>{ ulong <em>puVar1; uint uVar2; uint uVar3; undefined8 uVar4; int
+iVar5; uint uVar6; undefined8 uVar7; int extraout_EDX; ulong uVar8; code
+</em>pcVar9; code <em>extraout_RDX; code </em>extraout_RDX_00; code
+<em>extraout_RDX_01; code </em>extraout_RDX_02; code
+<em>extraout_RDX_03; code </em>extraout_RDX_04; long lVar10; long
+<em>plVar11; undefined1 </em>puVar12; undefined1 <em>puVar13; long
+</em>plVar14; byte bVar15; byte bVar16; byte bVar17; undefined1 auVar18
+[16]; long local_d40 [415]; undefined8 uStack_48; undefined
+<em>puStack_38; undefined </em>puStack_30; undefined *puStack_28;
+undefined8 local_20; long local_18; undefined8 uStack_10; long
+local_8;</p>
+<p>plVar11 = (long <em>)&amp;stack0x00000008; do { lVar10 =
+</em>plVar11; plVar14 = plVar11 + 1; plVar11 = plVar11 + 1; } while
+(lVar10 != 0); do { plVar11 = plVar14 + 1; lVar10 = <em>plVar14; plVar14
+= plVar11; } while (lVar10 != 0); uVar8 = 0x1000; do { puVar1 = (ulong
+</em>)(plVar11 + 1); lVar10 = <em>plVar11; if ((int)lVar10 == 0) goto
+LAB_010e3170; plVar11 = plVar11 + 2; } while ((int)lVar10 != 6); uVar8 =
+</em>puVar1 &amp; 0xffffffff; LAB_010e3170: local_8 = -uVar8; syscall();
+uVar4 = 0x13f; puStack_28 = &amp;DAT_00c75000; local_18 = 0xcf3;
+local_20 = 0xffffffffffffffff; puStack_30 = &amp;DAT_0046df18;
+puStack_38 = &amp;DAT_00c7522c; uVar7 = 0; pcVar9 = FUN_010e32c7; lVar10
+= -1; bVar17 = 0; bVar15 = 0; puVar12 = &amp;DAT_010e32ec; plVar11 =
+local_d40; uStack_10 = param_1; do { while ((<em>pcVar9)(), pcVar9 =
+extraout_RDX, (bool)bVar15) { </em>(undefined1 <em>)plVar11 =
+</em>puVar12; puVar12 = puVar12 + (ulong)bVar17 * -2 + 1; plVar11 =
+(long <em>)((long)plVar11 + (ulong)bVar17 </em> -2 + 1); } do { uVar3 =
+(<em>pcVar9)(); bVar15 = CARRY4(uVar3,uVar3) || CARRY4(uVar3 </em>
+2,(uint)bVar15); uVar3 = (<em>extraout_RDX_00)(); uVar6 = (uint)uVar7;
+pcVar9 = extraout_RDX_01; } while (!(bool)bVar15); bVar15 = uVar3 &lt;
+3; puVar13 = puVar12; if (!(bool)bVar15) { puVar13 = puVar12 +
+(ulong)bVar17 </em> -2 + 1; bVar15 = false; uVar3 = CONCAT31((int3)uVar3
++ -3,<em>puVar12) ^ 0xffffffff; if (uVar3 == 0) { if (puVar13 ==
+&amp;DAT_010e3cc8) { local_d40[0] = local_8; lVar10 = local_18 + -0x10;
+do { iVar5 = FUN_010e32a8(); } while (extraout_EDX != iVar5); lVar10 =
+FUN_010e32a8(0,lVar10,5); uStack_48 = 3; syscall(); /</em> WARNING:
+Could not recover jumptable at 0x010e32a6. Too many branches <em>/
+/</em> WARNING: Treating indirect jump as call <em>/ (</em>(code
+<em>)(lVar10 + 8))(uVar4); return; } do { /</em> WARNING: Do nothing
+block with infinite loop <em>/ } while( true ); } lVar10 =
+(long)(int)uVar3; } (</em>extraout_RDX_01)(); bVar16 =
+CARRY4(uVar6,uVar6) || CARRY4(uVar6 * 2,(uint)bVar15); iVar5 = uVar6 * 2
++ (uint)bVar15; auVar18 = (<em>extraout_RDX_02)(); pcVar9 =
+auVar18._8_8_; uVar3 = auVar18._0_4_; uVar6 = iVar5 </em> 2 +
+(uint)bVar16; if (uVar6 == 0) { uVar8 = auVar18._0_8_ &amp; 0xffffffff;
+bVar15 = 0xfffffffd &lt; uVar3; do { uVar6 = (uint)uVar8;
+(<em>pcVar9)(); uVar3 = (uint)bVar15; bVar15 = CARRY4(uVar6,uVar6) ||
+CARRY4(uVar6 </em> 2,uVar3); uVar8 = (ulong)(uVar6 * 2 + uVar3); uVar3 =
+(<em>extraout_RDX_03)(); uVar6 = (uint)uVar8; pcVar9 = extraout_RDX_04;
+} while (!(bool)bVar15); } uVar2 = (uint)((uint)lVar10 &lt; 0xfffff300);
+bVar15 = CARRY4(uVar6,uVar3) || CARRY4(uVar6 + uVar3,uVar2); puVar12 =
+(undefined1 </em>)((long)plVar11 + lVar10); for (uVar8 = (ulong)(uVar6 +
+uVar3 + uVar2); uVar8 != 0; uVar8 = uVar8 - 1) { <em>(undefined1
+</em>)plVar11 = <em>puVar12; puVar12 = puVar12 + (ulong)bVar17 </em> -2
++ 1; plVar11 = (long <em>)((long)plVar11 + (ulong)bVar17 </em> -2 + 1);
+} uVar7 = 0; puVar12 = puVar13; } while( true ); }</p>
+</details>
+<p>We get a really really hard to read chunk of things and a bunch of
+warnings. To make sense of it you can just ask an LLM for help.</p>
+<h1 id="fix">Fix</h1>
+<p>Turns out, the binary was packed. We can unpack it by running the
+command ‘upx -d filename’ <img src="/images/unpack.png"
+alt="unpack" /></p>
+<p>Now back to ghidra</p>
+<h1 id="ghidra-2">Ghidra 2</h1>
+<p><img src="/images/mult1.png" alt="unpacked" /> YES readable
+decompilation!!</p>
+<p>Its quite easy to understand whats going on now, child98678016 is
+created, ran and then deleted.</p>
+<p>The next step should be to access child98678016 to see what it does.
+This can be done by running the original binary, then stopping the
+process with ctrl + Z.</p>
+<h1 id="child98678016">child98678016</h1>
+<p>Looking at its decompilation:<br />
+<img src="/images/child1_1.png" alt="child1_1" /><br />
+and…. we face the same issue as before</p>
+<p>After unpacking: <img src="/images/child1_2.png"
+alt="child1_2" /> Much better :) Similar as before, we do the same trick
+again and view the child: <img src="/images/child2_1.png"
+alt="child2_1" /> AGAIN??! <img src="/images/child2_2.png"
+alt="child2_2" /> oh… We can assume that if we do this enough times, we
+would reach the final child file that has the flag.</p>
+<p>Just now when we stopped the multiplier binary we actually dumped all
+the child files so lets take a look.</p>
+<p>Running upx on all the children: <img src="/images/upx_all.png"
+alt="upx_all" /> WAIT child22385564 looks suspicious!! Not counting the
+files that we had already unpacked previously (multiplier and the first
+2 childs), child22385564 was not packed by UPX! IMPOSTER FOUND
+ඞඞඞඞඞඞඞඞඞඞ</p>
+<p><img src="/images/child3.png" alt="child_3" /> YAY we found the
+game logic as well as the flag code!!!! However, we have to win the game
+ONE HUNDRED MILLION times to get the flag :(</p>
+<p>Thankfully we can just patch the binary with ctrl+shift+g in
+ghidra</p>
+<p>Let’s set lcoal_30, which is the loop counter to 0x5f5e100, which is
+100000000 in hex. <img src="/images/patched.png" alt="patched" />
+This skips the entire game lol <img src="/images/for.png"
+alt="for" /> We then export the patched binary with format “Original
+File”. <img src="/images/export.png" alt="export" /></p>
+<h1 id="flag">Flag</h1>
+<p>Run the patched binary and flag.jpg will be put into your current
+folder <img src="/images/flag.jpg" alt="flag" /><br />
+sctf{N3s71ng_ne5t1n6_0n3_7w0_7hr33}</p>
+<p>This challenge was quite fun I learnt how to unpack and patch
+binaries</p>
+</body>
+</html>
