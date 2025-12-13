@@ -16,7 +16,7 @@ timezone:
 
 title: oiu890 # the main title
 
-tagline: blog for stuff # it will display as the subtitle
+tagline: Lucas's blog (mainly ctf)  # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
