@@ -356,7 +356,7 @@ free_chunk(b'1')
 free_chunk(b'2')
 #Tcache is now head->b->a->null
 ```
-We want to poison the next pointer of b such that it points to the location of `pigs_flying`.  
+We want to poison the next pointer of b such that it points to the location of `pigs_flying`. It is important to note that it is safe to overwrite `pigs_flying` like this as it is located in bss and naturally 8-byte aligned.   
 Finding the address of pigs_flying can be done as so in gdb.    
 ![pigs](/assets/images/sieberr-pwn/pigs.png)
 Mangle it and edit our chunk b.
