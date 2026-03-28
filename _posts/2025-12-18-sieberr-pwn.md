@@ -17,7 +17,7 @@ description: Writeups for some of the sieberr pwn from qualifiers
 ## Hi
 For context, I only recently upsolved some of the pwn from sieberr. I'll probably solve the others soon, but for now I just wanted to write about how I solved them. I learned quite a lot from some of these and they were very fun to solve.  
 You can get the source files from the sctf [GitHub](https://github.com/Sieberrsec-CTF/Sieberrsec-CTF-2025-Public)  
-
+(Also im unoriginal and copied the format for the writeups from someone else)  
 ## Dungeon Monster
 This is the first (and easiest) challenge from the CTF. I think it was also the only pwn challenge I solved during the CTF lol.  
 It is entirely possible to solve this challenge by accident as the solution is just to spam '2' until you get the flag.  
@@ -277,7 +277,7 @@ To solve this challenge, we will use a tcache poisoning attack.
 #### Tcache poisoning
 Tcache poisoning is a heap exploitation technique where an attacker corrupts the tcache freelist pointer (next pointer) of a freed chunk. This makes it so that a future malloc would return a pointer to that address that the attacker has inserted, allowing for an arbitrary write. It is also possible to use this technique for an arbitrary read primitive.  
 
-In this case, we will want to use the arbitrary write primitive to change the value of pigs_flying to \x01.  
+Soooo for the challenge we just need to write 1 to pigs_flying   
 
 Let's first take a look at how this exploit works, starting with the [tcache_entry](https://elixir.bootlin.com/glibc/glibc-2.29/source/malloc/malloc.c#L2908) struct.
 ```c
@@ -319,7 +319,7 @@ def safelink(pos,val):
 ```
 
 #### Exploit
-Since the challenge already gives us a heap leak, we don't need to worry about it and can easiy bypass the safe-linking.  
+Since the challenge already gives us a heap leak, we don't need to worry about it and can easily bypass the safe-linking.  
 I have written some functions to make running the exploit easier.  
 ```python
 def make_chunk(idx):
@@ -672,11 +672,11 @@ p.sendlineafter(b'> ',b'2')
 p.interactive()
 ```
 ## Authenticator
-I think this challenge is really cool, specically the part where you can 'brute force' the stack. Also I took a really long time to realise that I had to patch the binary to match the libc and dynamic loader 🙁. It was kind of my first time having to do such a thing so..
-For reference you patch it like this: 
-patchelf --set-interpreter ./ld-2.41.so auth_patch 
-readelf -l auth_patch | grep interpreter (just to see that it was updated)
-patchelf --set-rpath . auth_patch (so it finds from the current folder)
+I think this challenge is really cool, specically the part where you can 'brute force' the stack. Also I took a really long time to realise that I had to patch the binary to match the libc and dynamic loader 🙁. It was kind of my first time having to do such a thing so..  
+For reference you patch it like this:   
+patchelf --set-interpreter ./ld-2.41.so auth_patch  
+readelf -l auth_patch | grep interpreter (just to see that it was updated)  
+patchelf --set-rpath . auth_patch (so it finds from the current folder)  
 ### Challenge protections
 ![auth](/assets/images/sieberr-pwn/auth.png)
 ### Source
@@ -780,7 +780,7 @@ void reset_password(char *password){
     printf("Unfortunately, this feature isn't implemented yet.\n");
 }
 ```
-Indeed, the `if(memcmp(buffer, password, read_chars))` is able to be exploited and act as a way for us to brute force the password, as well as the adjacent stack memory.
+Indeed, the `if(memcmp(buffer, password, read_chars))` is able to be exploited and act as a way for us to brute force the password, as well as the adjacent stack memory. (Kinda like an oracle isn't that so cool!!)    
 `int read_chars = read(0, buffer, sizeof(buffer));` the read_chars variable is controlled by us. Upon successful completion, read() returns the number of bytes actually read and placed into the buffer. It is also important to note how the third argument of memcmp works.  
 ```
 NAME
