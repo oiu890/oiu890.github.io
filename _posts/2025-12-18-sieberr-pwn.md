@@ -1,8 +1,8 @@
 ---
 title: Sieberr CTF 6.0 pwn writeups (some of them)
 date: 2025-12-18 16:21:00 +0800
-categories: [Writeups, Sieberr]
-tags: [writeups,pwn,Sieberr]
+categories: [writeups, sieberr]
+tags: [writeups,pwn,sieberr]
 author: <oiu890>
 description: Writeups for some of the sieberr pwn from qualifiers
 ---

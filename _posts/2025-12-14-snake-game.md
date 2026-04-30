@@ -1,7 +1,7 @@
 ---
 title: LNC - Snake Game
 date: 2025-12-14 23:59:00 +0800
-categories: [Writeups,LNC]
+categories: [writeups,LNC]
 tags: [writeups,rev,LNC]
 author: <oiu890>
 description: Writeup for Snake Game rev from Lag and Crash 5.0
