@@ -16,7 +16,7 @@ description: minute cryptic
 # Hi
 If you cant tell, I love playing minute cryptic :)  
 Here are some cryptics that I've made! 😯😝😃  
-And if you don't know what a minute cryptic do try out [minute cryptic](https://www.minutecryptic.com/)!!  
+And if you don't know what a minute cryptic is, do try out [minute cryptic](https://www.minutecryptic.com/)!!  
   
 Essentially Minute Cryptic is a daily puzzle game that breaks cryptic crosswords into single-clue challenges.  
 The goal is to figure out the right word using the clue  
