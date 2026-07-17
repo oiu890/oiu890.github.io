@@ -26,7 +26,7 @@ A rough rundown would be:
 - sometimes there could even be only definitions, only wordplay etc!  
 
 It takes some practice to be able to start spotting all the indicators and figuring out how to manipulate them, so don't be discouraged!!!! (please)  
-It is actually reall fun 😎😎😎👍👍👍👍  
+It is actually really fun 😎😎😎👍👍👍👍  
 I hope you enjoy these :)  
 
 ---
