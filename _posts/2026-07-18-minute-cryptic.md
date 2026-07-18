@@ -55,11 +55,11 @@ The word is <span style = "color:yellowgreen">FRANTIC</span>
  
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
-This clue's indicators are <span style="color:plum">take </span>, <span style="color:plum">2 and 3 </span>, <span style="color:plum">no </span>, <span style="color:plum">swap</span>, and <span style="color:plum">first</span> some of which are selection indicators, some deletion indicators, all acting on our fodder.  
+This clue's indicators are <span style="color:plum">take </span>, <span style="color:plum">lines 2 and 3 </span>, <span style="color:plum">no </span>, <span style="color:plum">swap</span>, and <span style="color:plum">first</span> two of them are selection indicators, telling us to use certain parts of our fodder, one is a deletion indicator, telling us to remove certain parts of our fodder, and one is a replacement indicator, telling us to exchange certain parts of our fodder with something else.  
 </details>
 <details>
 <summary><span style="color:khaki">Show Fodder</span></summary>
-This clue's fodders are <span style="color:khaki">Lin and Terence</span>, <span style="color:khaki">Lucy </span>, and <span style="color:khaki">act</span>
+This clue's fodders are <span style="color:khaki">Lin and Terence</span>, <span style="color:khaki">Lucy </span>, <span style="color:khaki">L's</span>, and <span style="color:khaki">act</span>
 </details>
 <details>
 <summary><span style="color:lightblue">Show Definition</span></summary>
@@ -212,7 +212,7 @@ The answer is <span style="color:yellowgreen">NAG</span>
  
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
-The indicators are <span style="color:plum">mixed up</span>, <span style="color:plum">without</span>, and <span style="color:plum">French</span> one of them is an anagram indicator, one is a deletion indicator and one is a replacement indicator.  
+The indicators are <span style="color:plum">mixed up</span>, <span style="color:plum">without</span>, and <span style="color:plum">French</span> one of them is an anagram indicator, one is a deletion indicator and one is a replacement indicator. We will need to replace 
 </details>
 <details>
 <summary><span style="color:khaki">Show Fodder</span></summary>
