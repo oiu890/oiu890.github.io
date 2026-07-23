@@ -152,7 +152,7 @@ The answer is <span style="color:yellowgreen">METEOR</span>
 </details>
 ---
  
-# "Its very hard to het through this burning wall (8)"
+# "Its very hard to get through this burning wall (8)"
  
 <details>
 <summary><span style="color:lightblue">Show Definition 1</span></summary>
