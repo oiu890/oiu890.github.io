@@ -227,3 +227,22 @@ The definition is <span style="color:lightblue">shy</span>
 The answer is <span style="color:yellowgreen">TIMID</span>
 </details>
 ---
+
+# "Uno, Dos, Tres turmoil after Sierra becomes Delta. I got it? (10)"
+<details>
+<summary><span style="color:plum">Show Indicator</span></summary>
+The indicators are <span style="color:plum">turmoil</span>, <span style="color:plum">after</span>, and <span style="color:plum">becomes</span> one of them is an anagram indicator, one is a replacement indicator, and one is a positional indicator. We will need to find suitable substitues for some fodder, which will replace something in another fodder.  
+</details>
+<details>
+<summary><span style="color:khaki">Show Fodder</span></summary>
+The fodder is <span style="color:khaki">Uno, Dos, Tres</span>, <span style="color:khaki">Sierra</span> and <span style="color:khaki">Delta</span>
+</details>
+<details>
+<summary><span style="color:lightblue">Show Definition</span></summary>
+The definition is <span style="color:lightblue">I got it</span>.  
+</details>
+<details>
+<summary><span style="color:yellowgreen">Show Answer</span></summary>
+The answer is <span style="color:yellowgreen">UNDERSTOOD</span>
+</details>
+---
