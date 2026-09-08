@@ -40,25 +40,37 @@ document.addEventListener("DOMContentLoaded", () => {
       rowEl.className = "scribble-key-row";
 
       if (i === 2) {
+        [...row].forEach((letter) => {
+          const key = document.createElement("button");
+          key.type = "button";
+          key.className = "scribble-key";
+          key.textContent = letter;
+          key.addEventListener("click", () => {
+            board.appendChild(createLetter(letter));
+            arrangeLetters();
+          });
+          rowEl.appendChild(key);
+        });
+
         const back = document.createElement("button");
         back.type = "button";
         back.className = "scribble-key scribble-key-wide";
         back.textContent = "⌫";
         back.addEventListener("click", () => removeLastLetter());
         rowEl.appendChild(back);
-      }
-
-      [...row].forEach((letter) => {
-        const key = document.createElement("button");
-        key.type = "button";
-        key.className = "scribble-key";
-        key.textContent = letter;
-        key.addEventListener("click", () => {
-          board.appendChild(createLetter(letter));
-          arrangeLetters();
+      } else {
+        [...row].forEach((letter) => {
+          const key = document.createElement("button");
+          key.type = "button";
+          key.className = "scribble-key";
+          key.textContent = letter;
+          key.addEventListener("click", () => {
+            board.appendChild(createLetter(letter));
+            arrangeLetters();
+          });
+          rowEl.appendChild(key);
         });
-        rowEl.appendChild(key);
-      });
+      }
 
       keyboard.appendChild(rowEl);
     });
@@ -77,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ============================================================
-    // ARRANGE LETTERS — unchanged
+    // ARRANGE LETTERS
     // ============================================================
     function arrangeLetters() {
       const boxes = [...board.children];
@@ -111,7 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // createLetter(letter) — unchanged from your original (drag logic etc.)
+    // ============================================================
+    // CREATE LETTER (draggable box)
+    // ============================================================
     function createLetter(letter) {
       const box = document.createElement("div");
       box.className = "scribble-letter";
@@ -189,7 +203,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("keydown", handleKeydown);
 
-    // SHUFFLE / CLEAR — unchanged
+    // ============================================================
+    // SHUFFLE / CLEAR
+    // ============================================================
     shuffleButton.addEventListener("click", () => {
       const boxes = [...board.children];
       for (let i = boxes.length - 1; i > 0; i--) {
@@ -205,6 +221,9 @@ document.addEventListener("DOMContentLoaded", () => {
       arrangeLetters();
     });
 
+    // ============================================================
+    // RESIZE
+    // ============================================================
     window.addEventListener("resize", () => {
       if (isOpen) arrangeLetters();
     });
