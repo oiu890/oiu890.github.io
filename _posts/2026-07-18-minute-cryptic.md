@@ -30,8 +30,11 @@ It is actually really fun 😎😎😎👍👍👍👍
 I hope you enjoy these :)  
 
 ---
+
+
 # "text for real before pulling that antic, I was worried! (7)"
- 
+<div class="cryptic-scribble"></div> 
+<div class="cryptic-input" data-answer="FRANTIC"></div>
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
 The indicators for this clue are <span style="color:plum">text</span> and <span style="color:plum">before</span> one of them is a replacement indicator, telling us to replace some fodder with how it would be written in <span style="color:plum">text</span>, and the other being a positional indicator, telling us where to place certain fodder.  
@@ -52,7 +55,8 @@ The word is <span style = "color:yellowgreen">FRANTIC</span>
 
 
 # "Lin and Terence take lines 2 and 3, Lucy take no Ls and swap you with the first act, now read! (8)"
- 
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="LITERACY"></div> 
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
 This clue's indicators are <span style="color:plum">take </span>, <span style="color:plum">lines 2 and 3 </span>, <span style="color:plum">no </span>, <span style="color:plum">swap</span>, and <span style="color:plum">first</span> two of them are selection indicators, telling us to use certain parts of our fodder, one is a deletion indicator, telling us to remove certain parts of our fodder, and one is a replacement indicator, telling us to exchange certain parts of our fodder with something else.  
@@ -73,7 +77,8 @@ The answer is <span style="color:yellowgreen">LITERACY</span>
 
 
 # "first read off your amazing letters, your highness (5)"
- 
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="ROYAL"></div> 
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
 The indicator is <span style="color:plum">First</span>, a selection indicator.  
@@ -92,8 +97,9 @@ The answer is <span style="color:yellowgreen">ROYAL</span>
 </details>
 ---
  
-# "I heard X was the hacker who made the pilot scramble (7)"
- 
+# "Hacker heard X had scrambled pilot (7)"
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="EXPLOIT"></div>
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
 The indicators are <span style="color:plum">heard</span> and <span style="color:plum">scrambled</span>, one of which is a homophone indicator, meaning we need to find a replacement for a word based on what it sounds like. The other is an anagram indicator.  
@@ -113,7 +119,8 @@ The answer is <span style="color:yellowgreen">EXPLOIT</span>
 ---
  
 # "Oh returned to borderless arizona, its so far away! (7)"
- 
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="HORIZON"></div> 
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
 The indicators are <span style="color:plum">returned</span> and <span style="color:plum">borderless</span>, one of which is a reversal indicator, and the other is a deletion indicator.  
@@ -133,7 +140,8 @@ The answer is <span style="color:yellowgreen">HORIZON</span>
 ---
  
 # "Remote got scrambled by outerspace object (6)"
- 
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="METEOR"></div> 
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
 The indicator is <span style="color:plum">scrambled</span>, an anagram indicator
@@ -153,7 +161,8 @@ The answer is <span style="color:yellowgreen">METEOR</span>
 ---
  
 # "Its very hard to get through this burning wall (8)"
- 
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="FIREWALL"></div> 
 <details>
 <summary><span style="color:lightblue">Show Definition 1</span></summary>
 This clue is a double definition, we have 2 definitions for the same word, our answer is going to be one that fits both. The first definition is <span style="color:lightblue">Its very hard to get through</span>
@@ -169,7 +178,8 @@ The answer is <span style="color:yellowgreen">FIREWALL</span>
 ---
  
 # "In discoveries, I find what has been hidden (5)"
- 
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="COVER"></div> 
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
 The indicator is <span style="color:plum">In</span>, a containing indicator. Our answer will be contained inside some fodder.  
@@ -189,7 +199,8 @@ The answer is <span style="color:yellowgreen">COVER</span>
 ---
  
 # "I dont need a lecture in managing! (3)"
- 
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="NAG"></div> 
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
 The indicator is <span style="color:plum">In</span>, a containing indicator. Our answer will be contained inside some fodder.  
@@ -209,7 +220,8 @@ The answer is <span style="color:yellowgreen">NAG</span>
 ---
  
 # "Hes so shy, he mixed up limited without the French (5)"
- 
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="TIMID"></div> 
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
 The indicators are <span style="color:plum">mixed up</span>, <span style="color:plum">without</span>, and <span style="color:plum">French</span> one of them is an anagram indicator, one is a deletion indicator and one is a replacement indicator. We will need to replace 
@@ -229,6 +241,8 @@ The answer is <span style="color:yellowgreen">TIMID</span>
 ---
 
 # "Uno, Dos, Tres turmoil after Sierra becomes Delta. I got it? (10)"
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="UNDERSTOOD"></div>
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
 The indicators are <span style="color:plum">turmoil</span>, <span style="color:plum">after</span>, and <span style="color:plum">becomes</span> one of them is an anagram indicator, one is a replacement indicator, and one is a positional indicator. We will need to find suitable substitues for some fodder, which will replace something in another fodder.  
@@ -246,3 +260,72 @@ The definition is <span style="color:lightblue">I got it</span>.
 The answer is <span style="color:yellowgreen">UNDERSTOOD</span>
 </details>
 ---
+
+# "Within the sisterhood lies the crux of my stand (6)"
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="THESIS"></div>
+<details>
+<summary><span style="color:plum">Show Indicator</span></summary>
+The indicator is <span style="color:plum">within</span>. It is a containing indicator, so our answer will lie within some fodder.  
+</details>
+<details>
+<summary><span style="color:khaki">Show Fodder</span></summary>
+The fodder is <span style="color:khaki">the sisterhood</span>
+</details>
+<details>
+<summary><span style="color:lightblue">Show Definition</span></summary>
+The definition is <span style="color:lightblue">crux of my stand</span>.  
+</details>
+<details>
+<summary><span style="color:yellowgreen">Show Answer</span></summary>
+The answer is <span style="color:yellowgreen">THESIS</span>
+</details>
+---
+
+# "Misheard idol stayed still (4)"
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="IDLE"></div>
+<details>
+<summary><span style="color:plum">Show Indicator</span></summary>
+The indicator is <span style="color:plum">misheard</span>. It is a homophone indicator, try saying the fodder out loud.
+</details>
+<details>
+<summary><span style="color:khaki">Show Fodder</span></summary>
+The fodder is <span style="color:khaki">idol</span>
+</details>
+<details>
+<summary><span style="color:lightblue">Show Definition</span></summary>
+The definition is <span style="color:lightblue">stayed still</span>.  
+</details>
+<details>
+<summary><span style="color:yellowgreen">Show Answer</span></summary>
+The answer is <span style="color:yellowgreen">IDLE</span>
+</details>
+---
+
+# "Betis, Coventry, Juventus, Everton start a 5-3-1-1? Thats messed up, where are the goals? (10)"
+<div class="cryptic-scribble"></div>
+<div class="cryptic-input" data-answer="OBJECTIVES"></div>
+<details>
+<summary><span style="color:plum">Show Indicator</span></summary>
+The indicators are <span style="color:plum">start a 5-3-1-1</span> and <span style="color:plum">messed up</span>. One of them is an anagram indicator and the other is a selection indiacator telling us to pick certain parts of our fodder.  
+</details>
+<details>
+<summary><span style="color:khaki">Show Fodder</span></summary>
+The fodder is <span style="color:khaki">Betis, Coventry, Juventus, Everton</span>. We will use this fodder with the help of our indicators to give us our answer
+</details>
+<details>
+<summary><span style="color:lightblue">Show Definition</span></summary>
+The definition is <span style="color:lightblue">goals</span>.  
+</details>
+<details>
+<summary><span style="color:yellowgreen">Show Answer</span></summary>
+The answer is <span style="color:yellowgreen">OBJECTIVES</span>
+</details>
+---
+
+
+
+<link rel="stylesheet" href="/assets/css/cryptic.css">
+<script src="/assets/js/cryptic.js"></script>
+<script src="/assets/js/scribble.js"></script>
