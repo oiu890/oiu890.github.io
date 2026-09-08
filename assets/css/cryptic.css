@@ -128,14 +128,41 @@
   margin-top: 10px;
 }
 
-.scribble-mobile-input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  border: none;
-  padding: 0;
-  /* no pointer-events:none — it still needs to be focusable/tappable */
+.scribble-keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+  user-select: none;
+}
+
+.scribble-key-row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.scribble-key {
+  min-width: 30px;
+  height: 42px;
+  padding: 0 8px;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  border: 1px solid var(--main-border-color);
+  border-radius: 6px;
+
+  background: var(--card-bg);
+  color: var(--text-color);
+
+  touch-action: manipulation; /* kills 300ms tap delay + double-tap zoom */
+}
+
+.scribble-key:active {
+  background: var(--main-border-color);
+}
+
+.scribble-key-wide {
+  min-width: 50px;
 }
