@@ -133,6 +133,7 @@
   flex-direction: column;
   gap: 6px;
   margin-top: 12px;
+  width: 100%;
   user-select: none;
 }
 
@@ -140,14 +141,16 @@
   display: flex;
   justify-content: center;
   gap: 5px;
+  width: 100%;
 }
 
 .scribble-key {
-  min-width: 30px;
-  height: 42px;
-  padding: 0 8px;
+  flex: 1;
+  min-width: 0;      /* let flexbox actually shrink/grow instead of overflowing */
+  height: 48px;       /* a bit taller now that they're wider — easier to tap */
+  padding: 0;
 
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
 
   border: 1px solid var(--main-border-color);
@@ -156,7 +159,7 @@
   background: var(--card-bg);
   color: var(--text-color);
 
-  touch-action: manipulation; /* kills 300ms tap delay + double-tap zoom */
+  touch-action: manipulation;
 }
 
 .scribble-key:active {
@@ -164,5 +167,5 @@
 }
 
 .scribble-key-wide {
-  min-width: 50px;
+  flex: 1.6;   /* backspace key gets extra width relative to letter keys */
 }
