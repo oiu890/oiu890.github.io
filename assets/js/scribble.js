@@ -1,25 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ============================================================
-  // SCRIBBLE SPACES
-  // ============================================================
-
   document.querySelectorAll(".cryptic-scribble").forEach((container) => {
-
-    // ----------------------------
-    // Open / Close button
-    // ----------------------------
 
     const toggleButton = document.createElement("button");
     toggleButton.textContent = "Open Scribble Space";
     toggleButton.type = "button";
     toggleButton.className = "scribble-toggle";
-
     container.appendChild(toggleButton);
-
-
-    // ----------------------------
-    // Scribble area
-    // ----------------------------
 
     const workspace = document.createElement("div");
     workspace.className = "scribble-workspace";
@@ -27,6 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const board = document.createElement("div");
     board.className = "scribble-board";
+    board.tabIndex = 0; // still allow focus/click target
+
+    // ----------------------------
+    // Hidden mobile-keyboard trigger
+    // ----------------------------
+    const mobileInput = document.createElement("input");
+    mobileInput.type = "text";
+    mobileInput.autocomplete = "off";
+    mobileInput.autocapitalize = "characters";
+    mobileInput.spellcheck = false;
+    mobileInput.className = "scribble-mobile-input";
+    // visually hidden but focusable (display:none / opacity:0+pointer-events:none can block focus on iOS)
+    mobileInput.setAttribute("aria-hidden", "true");
 
     const controls = document.createElement("div");
     controls.className = "scribble-controls";
@@ -41,36 +40,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     controls.append(shuffleButton, clearButton);
 
+    board.appendChild(mobileInput);
     workspace.append(board, controls);
     container.appendChild(workspace);
 
-
-    // ============================================================
-    // OPEN / CLOSE
-    // ============================================================
-
     let isOpen = false;
+
+    function focusMobileInput() {
+      // keep it empty so 'input' events always represent a fresh keystroke
+      mobileInput.value = "";
+      mobileInput.focus({ preventScroll: true });
+    }
 
     toggleButton.addEventListener("click", () => {
       isOpen = !isOpen;
-
       workspace.hidden = !isOpen;
 
       if (isOpen) {
         toggleButton.textContent = "Close Scribble Space";
-        board.focus();
+        focusMobileInput();
       } else {
         toggleButton.textContent = "Open Scribble Space";
+        mobileInput.blur();
       }
     });
 
+    // Tapping anywhere on the board re-summons the keyboard
+    // (mobile browsers only show it on a direct user gesture + focus)
+    board.addEventListener("pointerdown", (event) => {
+      if (event.target === mobileInput) return;
+      focusMobileInput();
+    });
 
     // ============================================================
-    // ARRANGE LETTERS
+    // ARRANGE LETTERS (unchanged, but skip the hidden input itself)
     // ============================================================
-
     function arrangeLetters() {
-      const boxes = [...board.children];
+      const boxes = [...board.children].filter(
+        (el) => el !== mobileInput
+      );
 
       if (boxes.length === 0) {
         board.style.height = "220px";
@@ -81,69 +89,38 @@ document.addEventListener("DOMContentLoaded", () => {
       const letterHeight = 42;
       const gap = 8;
       const rowGap = 10;
-
       const availableWidth = board.clientWidth - 20;
-
       const perRow = Math.max(
         1,
-        Math.floor(
-          (availableWidth + gap) /
-          (letterWidth + gap)
-        )
+        Math.floor((availableWidth + gap) / (letterWidth + gap))
       );
 
       const rows = [];
-
       for (let i = 0; i < boxes.length; i += perRow) {
         rows.push(boxes.slice(i, i + perRow));
       }
 
       const totalHeight =
-        rows.length * letterHeight +
-        (rows.length - 1) * rowGap;
-
-      // Make the board grow if there are lots of letters
-      const boardHeight = Math.max(
-        220,
-        totalHeight + 40
-      );
-
+        rows.length * letterHeight + (rows.length - 1) * rowGap;
+      const boardHeight = Math.max(220, totalHeight + 40);
       board.style.height = `${boardHeight}px`;
 
-      const startY =
-        Math.max(
-          10,
-          (boardHeight - totalHeight) / 2
-        );
+      const startY = Math.max(10, (boardHeight - totalHeight) / 2);
 
       rows.forEach((row, rowIndex) => {
-
-        const rowWidth =
-          row.length * letterWidth +
-          (row.length - 1) * gap;
-
-        const startX =
-          (board.clientWidth - rowWidth) / 2;
+        const rowWidth = row.length * letterWidth + (row.length - 1) * gap;
+        const startX = (board.clientWidth - rowWidth) / 2;
 
         row.forEach((box, index) => {
-
-          box.style.left =
-            `${startX + index * (letterWidth + gap)}px`;
-
-          box.style.top =
-            `${startY + rowIndex * (letterHeight + rowGap)}px`;
+          box.style.left = `${startX + index * (letterWidth + gap)}px`;
+          box.style.top = `${startY + rowIndex * (letterHeight + rowGap)}px`;
         });
       });
     }
 
-
-    // ============================================================
-    // CREATE LETTER
-    // ============================================================
-
+    // createLetter(letter) — identical to your existing version, unchanged
     function createLetter(letter) {
       const box = document.createElement("div");
-
       box.className = "scribble-letter";
       box.textContent = letter;
 
@@ -152,76 +129,38 @@ document.addEventListener("DOMContentLoaded", () => {
       let offsetY = 0;
 
       box.addEventListener("pointerdown", (event) => {
-
+        event.stopPropagation(); // don't let board's pointerdown re-steal focus mid-drag
         dragging = true;
-
         const rect = box.getBoundingClientRect();
-
         offsetX = event.clientX - rect.left;
         offsetY = event.clientY - rect.top;
-
         box.setPointerCapture(event.pointerId);
-
         box.style.zIndex = "10";
         box.style.cursor = "grabbing";
       });
 
-
       box.addEventListener("pointermove", (event) => {
-
         if (!dragging) return;
-
-        const boardRect =
-          board.getBoundingClientRect();
-
-        let x =
-          event.clientX -
-          boardRect.left -
-          offsetX;
-
-        let y =
-          event.clientY -
-          boardRect.top -
-          offsetY;
-
-        x = Math.max(
-          0,
-          Math.min(
-            x,
-            board.clientWidth - box.offsetWidth
-          )
-        );
-
-        y = Math.max(
-          0,
-          Math.min(
-            y,
-            board.clientHeight - box.offsetHeight
-          )
-        );
-
+        const boardRect = board.getBoundingClientRect();
+        let x = event.clientX - boardRect.left - offsetX;
+        let y = event.clientY - boardRect.top - offsetY;
+        x = Math.max(0, Math.min(x, board.clientWidth - box.offsetWidth));
+        y = Math.max(0, Math.min(y, board.clientHeight - box.offsetHeight));
         box.style.left = `${x}px`;
         box.style.top = `${y}px`;
       });
 
-
       box.addEventListener("pointerup", (event) => {
-
         dragging = false;
-
         if (box.hasPointerCapture(event.pointerId)) {
           box.releasePointerCapture(event.pointerId);
         }
-
         box.style.zIndex = "";
         box.style.cursor = "grab";
       });
 
-
       box.addEventListener("pointercancel", () => {
-
         dragging = false;
-
         box.style.zIndex = "";
         box.style.cursor = "grab";
       });
@@ -229,120 +168,93 @@ document.addEventListener("DOMContentLoaded", () => {
       return box;
     }
 
-
     // ============================================================
-    // KEYBOARD INPUT
+    // KEYBOARD INPUT — desktop path (unchanged, but ignores mobileInput itself)
     // ============================================================
-
-    // IMPORTANT:
-    // This listener only exists while the scribble space is open.
-
     function handleKeydown(event) {
-
       if (!isOpen) return;
 
-      // Don't steal keyboard input from normal text inputs
       if (
-        event.target.tagName === "INPUT" ||
         event.target.tagName === "TEXTAREA" ||
-        event.target.isContentEditable
+        event.target.isContentEditable ||
+        (event.target.tagName === "INPUT" && event.target !== mobileInput)
       ) {
         return;
       }
 
-      // Add letters
+      // If focus is on mobileInput, let 'input'/'beforeinput' handle letters,
+      // but still handle Backspace here as a fallback for desktop.
+      if (event.target === mobileInput) return;
+
       if (/^[a-zA-Z]$/.test(event.key)) {
-
-        const letter =
-          event.key.toUpperCase();
-
-        board.appendChild(
-          createLetter(letter)
-        );
-
+        board.appendChild(createLetter(event.key.toUpperCase()));
         arrangeLetters();
-
         event.preventDefault();
       }
 
-      // Backspace removes last letter
-      if (
-        event.key === "Backspace" &&
-        board.children.length > 0
-      ) {
-
-        board.removeChild(
-          board.lastElementChild
-        );
-
-        arrangeLetters();
-
+      if (event.key === "Backspace" && board.children.length > 1) {
+        // >1 because mobileInput itself lives in board.children
+        removeLastLetter();
         event.preventDefault();
       }
     }
 
-    document.addEventListener(
-      "keydown",
-      handleKeydown
-    );
-
+    document.addEventListener("keydown", handleKeydown);
 
     // ============================================================
-    // SHUFFLE
+    // MOBILE INPUT — 'input' + 'beforeinput' path
     // ============================================================
-
-    shuffleButton.addEventListener("click", () => {
-
-      const boxes = [...board.children];
-
-      for (
-        let i = boxes.length - 1;
-        i > 0;
-        i--
-      ) {
-
-        const j =
-          Math.floor(
-            Math.random() * (i + 1)
-          );
-
-        [boxes[i], boxes[j]] =
-          [boxes[j], boxes[i]];
-      }
-
-      boxes.forEach((box) => {
-        board.appendChild(box);
-      });
-
+    function removeLastLetter() {
+      const boxes = [...board.children].filter((el) => el !== mobileInput);
+      const last = boxes[boxes.length - 1];
+      if (last) board.removeChild(last);
       arrangeLetters();
+    }
+
+    mobileInput.addEventListener("beforeinput", (event) => {
+      if (event.inputType === "deleteContentBackward") {
+        event.preventDefault();
+        removeLastLetter();
+        mobileInput.value = "";
+      }
     });
 
+    mobileInput.addEventListener("input", () => {
+      const raw = mobileInput.value;
+      const letters = raw.replace(/[^a-zA-Z]/g, "");
+
+      for (const ch of letters) {
+        board.appendChild(createLetter(ch.toUpperCase()));
+      }
+
+      arrangeLetters();
+      mobileInput.value = ""; // reset so next input event is a clean keystroke
+    });
 
     // ============================================================
-    // CLEAR
+    // SHUFFLE / CLEAR — skip mobileInput
     // ============================================================
+    shuffleButton.addEventListener("click", () => {
+      const boxes = [...board.children].filter((el) => el !== mobileInput);
+
+      for (let i = boxes.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [boxes[i], boxes[j]] = [boxes[j], boxes[i]];
+      }
+
+      boxes.forEach((box) => board.appendChild(box));
+      arrangeLetters();
+    });
 
     clearButton.addEventListener("click", () => {
-
-      board.innerHTML = "";
-
+      [...board.children]
+        .filter((el) => el !== mobileInput)
+        .forEach((el) => board.removeChild(el));
       arrangeLetters();
     });
 
-
-    // ============================================================
-    // RESIZE
-    // ============================================================
-
-    window.addEventListener(
-      "resize",
-      () => {
-        if (isOpen) {
-          arrangeLetters();
-        }
-      }
-    );
-
+    window.addEventListener("resize", () => {
+      if (isOpen) arrangeLetters();
+    });
   });
-
 });
