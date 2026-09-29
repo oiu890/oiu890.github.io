@@ -389,11 +389,11 @@ All together quite a nicely put together clue :).
 <div class="cryptic-input" data-answer="ARROW"></div> 
 <details>
 <summary><span style="color:plum">Show Indicator</span></summary>
-The indicators are <span style="color:plum">triple headed</span> and <span style="color:plum">heard</span>. One of them is a selection indicator, and the other is I guess a homophone indicator? (though this might be stretchy... good luck).  
+This clue's indicators are <span style="color:plum">triple headed</span> and <span style="color:plum">heard</span>. One of them is a selection indicator, and the other is I guess a homophone indicator? (though this might be stretchy... good luck).  
 </details>
 <details>
 <summary><span style="color:khaki">Show Fodder</span></summary>
-The fodder are <span style="color:khaki">array</span> and <span style="color:khaki">someone got hurt</span>. We will need to find a suitable replacement for one of them, with the help of our indicators.  
+This clue's fodder are <span style="color:khaki">array</span> and <span style="color:khaki">someone got hurt</span>. We will need to find a suitable replacement for one of them, with the help of our indicators.  
 </details>
 <details>
 <summary><span style="color:lightblue">Show Definition</span></summary>
